@@ -1,0 +1,15 @@
+#wrapper {
+    /*   border-collapse: collapse; */
+   
+   }
+   table td {
+     /*  padding: 0;*/
+        text-align: center;
+   }
+
+   .card {
+        width:50px;
+        height: 75px;
+        border: .01em solid #222;
+        text-align: center;
+   }

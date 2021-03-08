@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Blackjack</title>
+    <meta charset="utf-8">
+ 
+<link href="../static/css/blackjack.css" rel="stylesheet">
+<!--<script src="../static/js/jquery-3.4.1.js"></script> -->
+
+</head>
+
+<body>
+    <div id="wrapper">
+        {% if game_over == True %}
+        <p>Game over</p>
+        {% else %}
+       <p></p>
+       {% endif %}
+       <p>{{game_status}}</p>
+        <div id="divDealer"><p>Dealer{% if show_dealer_score == True %}: {{dealerscore}}  {% endif %}</p>
+            <table><tr>
+                {% for card in dealerhand %} 
+                {% if card.hidden %}
+                <td class="card" style="background-color: #eee; color: aaa"></td>
+                {% else %}
+                <td class="card"><table style="width:100%"><tr><td>{{card.face}}</td></tr>
+                                                           <tr><td>{{card.suit}}</td></tr>
+                                  </table></td>
+                   {% endif %} 
+                {% endfor %}
+            </tr></table>
+        </div>
+
+        <div id="divPlayer"><p>Player: {{playerscore}}</p>
+             <table><tr>
+                {% for card in playerhand %} 
+                <td class="card"><table style="width:100%"><tr><td>{{card.face}}</td></tr>
+                                                           <tr><td>{{card.suit}}</td></tr>
+                                  </table></td>
+                {% endfor %}
+            </tr></table>
+
+
+        </div>
+
+        <div id="divPlayer">
+            {% for card in playerhand %} 
+            <div><p>{{card.val}}</p></div>
+            {% endfor %}
+
+            {% if game_over == False %}
+            <input type=button id="anothercard" value="Another card" 
+            onClick="window.location.href='?ph={{ph}}&dh={{dh}}&next_move=anothercard'">
+            <input type=button id="hold" value="Hold"
+            onClick="window.location.href='?ph={{ph}}&dh={{dh}}&next_move=hold'">
+            {% endif %}
+        </div>
+
+
+       <form>
+        {% if game_over == True %} 
+        <input  type="submit"  onClick="window.location.href=''" value="Reset" />
+        {% endif %}
+       </form>
+    </div>
+</body>
+
+</html>

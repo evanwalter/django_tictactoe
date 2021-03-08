@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+    <meta charset="utf-8">
+ 
+<link href="../static/css/ttt.css" rel="stylesheet">
+<!--<script src="../static/js/jquery-3.4.1.js"></script> -->
+
+</head>
+
+<body>
+    <div id="wrapper">
+        {% if game_status == True %}
+        <p>Game over</p>
+        {% else %}
+       <p>Playing...</p>
+       {% endif %}
+       <table class="gameboard">
+        {% for row in matrix %}
+            <tr class="cellrow">
+                {% for col in row %}
+                    {% if col.v == "-" and game_status == False %}
+                    <td class="cell">
+                            <button id="{{col.id}}" 
+                            onClick="window.location.href='?xoro={{xoro}}&next_move={{col.id}}&sofar={{sofar}}'"
+                            class="next_move">{{ xoro }}</button></td>
+                    {% else %}
+                    <td class="cell">{{col.v}}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+       </table>
+       <form>
+        <input  type="submit"  onClick="window.location.href=''" value="Reset" />
+       </form>
+    </div>
+</body>
+
+</html>
